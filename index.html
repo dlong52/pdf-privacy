@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chính sách quyền riêng tư — PDF All-in-One: Ký &amp; Chỉnh Sửa</title>
+<meta name="description" content="Chính sách quyền riêng tư của ứng dụng PDF All-in-One: Ký &amp; Chỉnh Sửa cho Android. Cách ứng dụng xử lý tệp PDF, quyền truy cập, Google Drive, OneDrive, sao lưu và xoá dữ liệu.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#B60000">
+<meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://dlong52.github.io/pdf-privacy/">
+<style>
+/* Page shell: design tokens, reset, header, layout, footer. Loaded before content.css. */
+
+:root {
+  --primary: #b60000;
+  --primary-pressed: #8f0000;
+  --primary-tint: #fff5f5;
+  --on-primary: #ffffff;
+  --text: #111214;
+  --text-secondary: #5f6368;
+  --text-tertiary: #6b7076;
+  --bg: #ffffff;
+  --bg-muted: #f8f8f8;
+  --border: #e4e4e4;
+  --border-strong: #c9cdd2;
+  --warn: #b06a00;
+  --warn-bg: #fff8ec;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 2px rgba(17, 18, 20, 0.06), 0 8px 24px rgba(17, 18, 20, 0.04);
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --wrap: 1080px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #ff6b6b;
+    --primary-pressed: #ff8a8a;
+    --primary-tint: #2a1414;
+    --on-primary: #2a0d0d;
+    --text: #f2f3f4;
+    --text-secondary: #b3b7bd;
+    --text-tertiary: #8a8f98;
+    --bg: #111214;
+    --bg-muted: #1a1c1f;
+    --border: #2a2d31;
+    --border-strong: #3a3e44;
+    --warn: #e0a341;
+    --warn-bg: #2a2113;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 10;
+  background: var(--primary);
+  color: var(--on-primary);
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+.skip-link:focus { top: 12px; }
+
+a { color: var(--primary); text-underline-offset: 2px; }
+a:hover { color: var(--primary-pressed); }
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 64px;
+}
+.brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.brand-mark {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.brand-text { display: flex; flex-direction: column; min-width: 0; }
+.brand-text strong {
+  font-size: 15px;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.brand-text span { font-size: 12.5px; color: var(--text-secondary); }
+.header-mail {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0 16px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  color: var(--text);
+}
+.header-mail:hover { border-color: var(--primary); color: var(--primary); }
+
+/* Layout */
+.page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  padding-top: 32px;
+  padding-bottom: 72px;
+}
+@media (min-width: 940px) {
+  .page {
+    grid-template-columns: minmax(0, 1fr) 232px;
+    gap: 56px;
+    padding-top: 48px;
+  }
+}
+
+.doc { min-width: 0; }
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 0 40px;
+  background: var(--bg-muted);
+}
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.footer-inner p { margin: 0; max-width: none; }
+
+/* Document content: hero, sections, tables, notes, table of contents, print. */
+
+/* Doc head */
+.doc-head { padding-bottom: 8px; }
+.eyebrow {
+  margin: 0 0 8px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+h1 {
+  margin: 0 0 12px;
+  font-size: clamp(28px, 5vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.lead {
+  margin: 0 0 24px;
+  font-size: clamp(16px, 2.2vw, 18px);
+  color: var(--text-secondary);
+  max-width: 62ch;
+}
+.meta-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+  gap: 10px;
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 16px;
+  background: var(--bg-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.meta-list li { display: flex; flex-direction: column; gap: 2px; }
+.meta-list span { font-size: 12px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.04em; }
+.meta-list strong { font-size: 14px; }
+
+/* Summary cards */
+.summary-block { margin: 24px 0 0; padding-top: 0; }
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+.card {
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-muted);
+}
+.card h3 { margin: 0 0 6px; font-size: 15px; }
+.card p { margin: 0; font-size: 14px; color: var(--text-secondary); }
+
+/* Sections */
+section { padding-top: 36px; }
+h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 12px;
+  font-size: clamp(21px, 3vw, 25px);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  scroll-margin-top: 88px;
+}
+h2 .num {
+  flex: none;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-tint);
+  border: 1px solid color-mix(in srgb, var(--primary) 22%, transparent);
+  border-radius: 999px;
+  min-width: 28px;
+  height: 28px;
+  display: inline-grid;
+  place-items: center;
+  transform: translateY(-2px);
+}
+h3 { margin: 26px 0 8px; font-size: 16.5px; }
+p { margin: 0 0 14px; max-width: 68ch; }
+ul, ol { margin: 0 0 16px; padding-left: 22px; max-width: 68ch; }
+li { margin-bottom: 8px; }
+li:last-child { margin-bottom: 0; }
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  background: var(--bg-muted);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+.checklist { list-style: none; padding-left: 0; }
+.checklist li { position: relative; padding-left: 28px; }
+.checklist li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 12px;
+  height: 7px;
+  border-left: 2px solid var(--primary);
+  border-bottom: 2px solid var(--primary);
+  transform: rotate(-45deg);
+}
+
+/* Notes */
+.note {
+  padding: 14px 16px;
+  border-left: 3px solid var(--primary);
+  background: var(--primary-tint);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 15px;
+}
+.note.warn {
+  border-left-color: var(--warn);
+  background: var(--warn-bg);
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 18px;
+  font-size: 14.5px;
+  border: 1px solid var(--border);
+}
+th, td {
+  text-align: left;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+thead th {
+  background: var(--bg-muted);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-secondary);
+}
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+.facts th {
+  width: 34%;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--bg-muted);
+}
+.facts td a { word-break: break-word; }
+
+/* Permission table stacks on narrow screens */
+@media (max-width: 640px) {
+  .permissions { border: 0; font-size: 14px; }
+  .permissions thead { display: none; }
+  .permissions tbody, .permissions tr, .permissions td { display: block; width: 100%; }
+  .permissions tr {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 10px;
+    padding: 4px 0;
+    background: var(--bg-muted);
+  }
+  .permissions td { border: 0; padding: 8px 14px; }
+  .permissions td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 2px;
+  }
+  .permissions td + td { border-top: 1px dashed var(--border-strong); }
+}
+
+/* Contact */
+.contact-card {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-muted);
+  max-width: 520px;
+}
+.contact-card p { margin: 0 0 8px; }
+.contact-card p:last-child { margin-bottom: 0; }
+
+/* Table of contents */
+.toc-desktop { display: none; }
+@media (min-width: 940px) {
+  .toc-desktop {
+    display: block;
+    position: sticky;
+    top: 88px;
+    align-self: start;
+    font-size: 13.5px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+  }
+}
+.toc-title {
+  margin: 0 0 10px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.toc-desktop ol, .toc-mobile ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 1px solid var(--border);
+}
+.toc-desktop li, .toc-mobile li { margin: 0; }
+.toc-desktop a, .toc-mobile a {
+  display: block;
+  padding: 6px 0 6px 12px;
+  margin-left: -1px;
+  border-left: 2px solid transparent;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.toc-desktop a:hover, .toc-mobile a:hover {
+  color: var(--primary);
+  border-left-color: var(--primary);
+}
+@media (min-width: 940px) and (pointer: coarse) {
+  .toc-desktop a { padding-top: 11px; padding-bottom: 11px; }
+}
+
+.toc-mobile { margin: 24px 0 0; }
+@media (min-width: 940px) {
+  .toc-mobile { display: none; }
+}
+.toc-mobile details {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0 14px;
+  background: var(--bg-muted);
+}
+.toc-mobile summary {
+  cursor: pointer;
+  padding: 12px 0;
+  font-weight: 600;
+  font-size: 14px;
+}
+.toc-mobile ol { border-left: 0; padding-bottom: 10px; font-size: 14px; }
+.toc-mobile a {
+  padding: 11px 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+/* Print */
+@media print {
+  :root {
+    --text: #000000;
+    --text-secondary: #333333;
+    --text-tertiary: #444444;
+    --bg: #ffffff;
+    --bg-muted: #ffffff;
+    --border: #bbbbbb;
+    --primary: #000000;
+    --primary-tint: #ffffff;
+    --warn: #000000;
+    --warn-bg: #ffffff;
+  }
+  .site-header, .toc-desktop, .toc-mobile, .site-footer, .skip-link { display: none !important; }
+  body { font-size: 11pt; color: #000; background: #fff; }
+  .page { display: block; padding: 0; }
+  h1, h2, h3 { break-after: avoid; }
+  a { color: #000; text-decoration: underline; }
+  .card, .note, table, tr { break-inside: avoid; }
+  .meta-list, .card, .contact-card, .note, table, .permissions tr { background: #fff !important; }
+  .permissions { font-size: 9.5pt; }
+}
+</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23B60000'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='22' font-weight='bold' fill='white' text-anchor='middle'%3EPDF%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip-link" href="#noi-dung">Bỏ qua điều hướng, tới nội dung chính</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">PDF</span>
+      <span class="brand-text">
+        <strong>PDF All-in-One: Ký &amp; Chỉnh Sửa</strong>
+        <span>Chính sách quyền riêng tư</span>
+      </span>
+    </div>
+    <a class="header-mail" href="mailto:dlong.work06@gmail.com">Liên hệ</a>
+  </div>
+</header>
+
+<main class="wrap page">
+  <article id="noi-dung" class="doc" tabindex="-1">
+
+    <div class="doc-head">
+      <p class="eyebrow">Chính sách quyền riêng tư</p>
+      <h1>PDF All-in-One: Ký &amp; Chỉnh Sửa</h1>
+      <p class="lead">
+        Ứng dụng xử lý PDF ngay trên thiết bị của bạn. Chúng tôi không có máy chủ riêng,
+        không tạo tài khoản cho người dùng và không bán dữ liệu cá nhân.
+      </p>
+      <ul class="meta-list">
+        <li><span>Ngày cập nhật</span><strong>02/11/2026</strong></li>
+        <li><span>Ngày có hiệu lực</span><strong>02/11/2026</strong></li>
+        <li><span>Nền tảng áp dụng</span><strong>Android</strong></li>
+        <li><span>Phiên bản áp dụng</span><strong>1.0.0</strong></li>
+      </ul>
+    </div>
+
+    <nav class="toc-mobile" aria-label="Mục lục">
+      <details>
+        <summary>Mục lục</summary>
+        <ol>
+          <li><a href="#tom-tat">Tóm tắt nhanh</a></li>
+          <li><a href="#don-vi">1. Đơn vị chịu trách nhiệm</a></li>
+          <li><a href="#xu-ly-tren-thiet-bi">2. Dữ liệu được xử lý trên thiết bị</a></li>
+          <li><a href="#khong-thu-thap">3. Dữ liệu chúng tôi không thu thập</a></li>
+          <li><a href="#quyen-android">4. Quyền truy cập trên Android</a></li>
+          <li><a href="#google-drive-onedrive">5. Google Drive và OneDrive</a></li>
+          <li><a href="#chia-se-ben-thu-ba">6. Khi nào dữ liệu rời khỏi thiết bị</a></li>
+          <li><a href="#luu-tru-xoa">7. Lưu trữ, sao lưu và xoá dữ liệu</a></li>
+          <li><a href="#bao-mat">8. Bảo mật</a></li>
+          <li><a href="#tre-em">9. Trẻ em</a></li>
+          <li><a href="#quyen-cua-ban">10. Quyền của bạn</a></li>
+          <li><a href="#thay-doi">11. Thay đổi chính sách</a></li>
+          <li><a href="#lien-he">12. Liên hệ</a></li>
+        </ol>
+      </details>
+    </nav>
+
+    <section id="tom-tat" class="summary-block" aria-labelledby="tom-tat-h">
+      <h2 id="tom-tat-h" class="sr-only">Tóm tắt nhanh</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Xử lý trên thiết bị</h3>
+          <p>Tệp PDF bạn mở, ký, điền biểu mẫu, nén hay ghép được xử lý cục bộ trên điện thoại.</p>
+        </div>
+        <div class="card">
+          <h3>Không có tài khoản</h3>
+          <p>Không cần đăng ký, không thu thập tên, email, số điện thoại hay danh bạ.</p>
+        </div>
+        <div class="card">
+          <h3>Không quảng cáo</h3>
+          <p>Không có SDK quảng cáo, không theo dõi hành vi và không bán dữ liệu người dùng.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="don-vi">
+      <h2><span class="num">1</span> Đơn vị chịu trách nhiệm</h2>
+      <p>
+        Chính sách này do cá nhân phát triển ứng dụng <strong>PDF All-in-One: Ký &amp; Chỉnh Sửa</strong>
+        ban hành và chịu trách nhiệm:
+      </p>
+      <table class="facts">
+        <caption class="sr-only">Thông tin nhà phát triển và đơn vị chịu trách nhiệm dữ liệu</caption>
+        <tbody>
+          <tr><th scope="row">Nhà phát triển</th><td>Nguyễn Đức Long (cá nhân)</td></tr>
+          <tr><th scope="row">Quốc gia</th><td>Việt Nam</td></tr>
+          <tr><th scope="row">Email hỗ trợ</th><td><a href="mailto:dlong.work06@gmail.com">dlong.work06@gmail.com</a></td></tr>
+          <tr><th scope="row">Kênh phân phối</th><td>Google Play (Android)</td></tr>
+        </tbody>
+      </table>
+      <p>
+        Chính sách được xây dựng theo Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15 và Nghị định 356/2025/NĐ-CP
+        (có hiệu lực từ 01/01/2026), cùng Chính sách dữ liệu người dùng của Google Play.
+      </p>
+    </section>
+
+    <section id="xu-ly-tren-thiet-bi">
+      <h2><span class="num">2</span> Dữ liệu được xử lý trên thiết bị</h2>
+      <p>
+        Các thao tác với tài liệu — mở, xem, ký, điền biểu mẫu, chỉnh sửa, nén, ghép — được thực hiện
+        trên thiết bị của bạn. Ứng dụng không gửi nội dung PDF tới máy chủ của nhà phát triển,
+        vì chúng tôi không vận hành máy chủ hay cơ sở dữ liệu trung tâm nào.
+      </p>
+      <p>Để hoạt động, ứng dụng lưu các loại dữ liệu sau <em>trong vùng lưu trữ riêng của ứng dụng</em>:</p>
+      <ul>
+        <li><strong>Tệp PDF</strong> bạn nhập vào ứng dụng. Khi bạn chọn tệp từ trình chọn tệp của Android, ứng dụng sao chép tệp vào vùng lưu trữ riêng để tránh tệp gốc bị thay đổi.</li>
+        <li><strong>Tệp xuất (export)</strong> mà ứng dụng tạo ra sau khi ký, điền biểu mẫu hoặc chỉnh sửa.</li>
+        <li><strong>Bản nháp đang làm dở</strong> và <strong>chữ ký đã lưu</strong> (ảnh PNG nền trong suốt do bạn tự vẽ).</li>
+        <li><strong>Thông tin quản lý tệp</strong>: tên tệp, dung lượng, thời điểm mở gần nhất, trạng thái yêu thích — được lưu trong cơ sở dữ liệu SQLite trên thiết bị.</li>
+        <li><strong>Cài đặt ứng dụng</strong>: ngôn ngữ, giao diện sáng/tối và các tuỳ chọn hiển thị.</li>
+        <li><strong>Ảnh bạn chọn cho tính năng quét tài liệu</strong>: được xử lý trên thiết bị để tạo PDF.</li>
+      </ul>
+      <p class="note">
+        <strong>Lưu ý:</strong> dữ liệu nêu trên do ứng dụng lưu trên thiết bị. Ngoài các trường hợp bạn
+        chủ động chia sẻ hoặc lưu lên Drive/OneDrive, hệ điều hành có thể tự sao lưu dữ liệu ứng dụng
+        (xem mục 7.3), và gỡ ứng dụng sẽ xoá vùng lưu trữ riêng của ứng dụng.
+      </p>
+    </section>
+
+    <section id="khong-thu-thap">
+      <h2><span class="num">3</span> Dữ liệu chúng tôi không thu thập</h2>
+      <p>
+        Phiên bản 1.0.0 của ứng dụng <strong>không</strong> thu thập hoặc gửi tới máy chủ của nhà phát triển,
+        và không bán hay chia sẻ cho bên thứ ba vì mục đích quảng cáo/thương mại, các dữ liệu sau:
+      </p>
+      <ul class="checklist">
+        <li>Họ tên, email, số điện thoại, địa chỉ hay danh bạ — ứng dụng không yêu cầu đăng ký tài khoản.</li>
+        <li>Nội dung tệp PDF, chữ ký, biểu mẫu đã điền hoặc ảnh quét.</li>
+        <li>Vị trí, mã định danh quảng cáo hay lịch sử duyệt web.</li>
+        <li>Số liệu phân tích hành vi (analytics) hoặc báo cáo sự cố (crash reporting).</li>
+        <li>Dữ liệu thanh toán — phiên bản 1.0.0 không có giao dịch mua trong ứng dụng.</li>
+      </ul>
+      <p>
+        Các trường hợp dữ liệu rời khỏi thiết bị — khi bạn chủ động chia sẻ hoặc lưu lên Drive/OneDrive,
+        hoặc khi hệ điều hành tự sao lưu — được nêu ở mục 5, 6 và 7.3.
+      </p>
+      <p class="note warn">
+        <strong>Nếu trong tương lai</strong> ứng dụng bổ sung dịch vụ có thể tiếp cận dữ liệu mới
+        (ví dụ phân tích sự cố, đồng bộ đám mây của nhà phát triển hoặc mua trong ứng dụng), chính sách này
+        sẽ được cập nhật <em>trước khi</em> bản phát hành đó lên Google Play.
+      </p>
+    </section>
+
+    <section id="quyen-android">
+      <h2><span class="num">4</span> Quyền truy cập trên Android</h2>
+      <p>Ứng dụng chỉ yêu cầu quyền hoặc quyền truy cập khi bạn thực sự dùng tính năng cần đến nó:</p>
+      <table class="permissions">
+        <caption class="sr-only">Các quyền truy cập ứng dụng sử dụng trên Android và dữ liệu liên quan</caption>
+        <thead>
+          <tr><th scope="col">Quyền / khả năng</th><th scope="col">Khi nào dùng</th><th scope="col">Dữ liệu đi đâu</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Quyền / khả năng">Chọn và mở tệp (Document picker)</td>
+            <td data-label="Khi nào dùng">Khi bạn bấm Nhập tệp hoặc mở một PDF</td>
+            <td data-label="Dữ liệu đi đâu">Ứng dụng chỉ đọc tệp bạn chọn và sao chép vào vùng lưu trữ riêng; tệp không được gửi tới máy chủ của nhà phát triển (xem mục 6 và 7.3).</td>
+          </tr>
+          <tr>
+            <td data-label="Quyền / khả năng">Camera</td>
+            <td data-label="Khi nào dùng">Khi bạn dùng tính năng quét tài liệu</td>
+            <td data-label="Dữ liệu đi đâu">Ảnh được xử lý trên thiết bị để tạo PDF; không gửi tới máy chủ của nhà phát triển.</td>
+          </tr>
+          <tr>
+            <td data-label="Quyền / khả năng">Thư viện ảnh</td>
+            <td data-label="Khi nào dùng">Khi bạn chọn ảnh có sẵn để đưa vào tài liệu</td>
+            <td data-label="Dữ liệu đi đâu">Ứng dụng chỉ đọc ảnh bạn chọn để tạo PDF; ảnh không được gửi tới máy chủ của nhà phát triển (xem mục 6 và 7.3).</td>
+          </tr>
+          <tr>
+            <td data-label="Quyền / khả năng">Bộ nhớ trên Android 12 trở xuống (READ/WRITE_EXTERNAL_STORAGE)</td>
+            <td data-label="Khi nào dùng">Chỉ trên Android 12 trở xuống, khi bạn chọn tệp hoặc ảnh</td>
+            <td data-label="Dữ liệu đi đâu">Ứng dụng chỉ đọc tệp bạn chọn; không gửi tới máy chủ của nhà phát triển.</td>
+          </tr>
+          <tr>
+            <td data-label="Quyền / khả năng">Internet</td>
+            <td data-label="Khi nào dùng">Chỉ khi bạn chủ động đăng nhập Google Drive hoặc OneDrive</td>
+            <td data-label="Dữ liệu đi đâu">Kết nối trực tiếp tới Google/Microsoft bằng tài khoản của bạn (xem mục 5).</td>
+          </tr>
+          <tr>
+            <td data-label="Quyền / khả năng">Rung (VIBRATE)</td>
+            <td data-label="Khi nào dùng">Phản hồi rung khi bạn thao tác trong ứng dụng</td>
+            <td data-label="Dữ liệu đi đâu">Không liên quan tới dữ liệu người dùng.</td>
+          </tr>
+          <tr>
+            <td data-label="Quyền / khả năng">Hiển thị trên ứng dụng khác (SYSTEM_ALERT_WINDOW)</td>
+            <td data-label="Khi nào dùng">Hiện được khai báo trong cấu hình build của ứng dụng; không gắn với tính năng nào bạn bật</td>
+            <td data-label="Dữ liệu đi đâu">Ứng dụng không dùng quyền này để xử lý tệp hay dữ liệu người dùng. Bản phát hành chính thức sẽ được rà soát để loại bỏ nếu không cần thiết.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        Danh sách quyền chính thức là danh sách Google Play hiển thị cho bản phát hành bạn cài đặt.
+        Bạn có thể kiểm tra hoặc thu hồi mọi quyền trong <em>Cài đặt Android → Ứng dụng → PDF All-in-One</em>.
+        Khi quyền bị từ chối, ứng dụng vẫn dùng được các tính năng không cần quyền đó.
+      </p>
+    </section>
+
+    <section id="google-drive-onedrive">
+      <h2><span class="num">5</span> Google Drive và OneDrive</h2>
+      <p>
+        Ứng dụng cho phép bạn mở tệp từ và lưu tệp lên Google Drive hoặc Microsoft OneDrive.
+        Đây là lựa chọn do bạn chủ động bật; ứng dụng không tự động tải tệp lên bất kỳ dịch vụ đám mây nào.
+      </p>
+      <ul>
+        <li>Việc đăng nhập dùng giao thức <strong>OAuth 2.0 (PKCE)</strong> của Google/Microsoft. Bạn đăng nhập trên trang chính thức của nhà cung cấp; ứng dụng không thấy mật khẩu của bạn.</li>
+        <li>Mã truy cập (token) được lưu trong kho bảo mật của hệ điều hành (Android Keystore) và không được gửi tới máy chủ của nhà phát triển — chúng tôi không có máy chủ.</li>
+        <li>Khi bạn tải hoặc lưu tệp, dữ liệu đi trực tiếp giữa thiết bị và tài khoản Google/Microsoft của bạn. Chúng tôi không có quyền truy cập vào tài khoản đó.</li>
+        <li>Khi bạn đăng xuất, ứng dụng xoá token khỏi thiết bị. Tệp đã lưu trên Drive/OneDrive vẫn thuộc tài khoản của bạn và do bạn quản lý.</li>
+      </ul>
+      <p>
+        Dữ liệu trong tài khoản Google/Microsoft của bạn được điều chỉnh bởi chính sách quyền riêng tư của
+        <a href="https://policies.google.com/privacy" rel="noopener noreferrer" target="_blank">Google<span class="sr-only"> (mở trong tab mới)</span></a> và
+        <a href="https://privacy.microsoft.com/vi-vn/privacystatement" rel="noopener noreferrer" target="_blank">Microsoft<span class="sr-only"> (mở trong tab mới)</span></a>.
+      </p>
+    </section>
+
+    <section id="chia-se-ben-thu-ba">
+      <h2><span class="num">6</span> Khi nào dữ liệu rời khỏi thiết bị</h2>
+      <p>
+        Chúng tôi không bán, không cho thuê và không chia sẻ dữ liệu cá nhân của bạn cho bên thứ ba vì mục đích
+        quảng cáo hay thương mại. Dữ liệu có thể rời khỏi thiết bị trong các trường hợp sau:
+      </p>
+      <ul>
+        <li><strong>Bạn chủ động chia sẻ tệp</strong> qua khay chia sẻ của Android (Zalo, Gmail, Drive…) — tệp được gửi tới ứng dụng bạn chọn, theo chính sách của ứng dụng đó.</li>
+        <li><strong>Bạn chủ động lưu lên Google Drive/OneDrive</strong> bằng tài khoản của bạn (xem mục 5).</li>
+        <li><strong>Hệ điều hành tự sao lưu</strong> dữ liệu ứng dụng lên tài khoản Google của bạn nếu tính năng sao lưu đang bật trên thiết bị (xem mục 7.3).</li>
+        <li><strong>Bạn gửi email cho bộ phận hỗ trợ</strong> — nội dung email và địa chỉ của bạn do bạn tự cung cấp, chỉ dùng để trả lời yêu cầu.</li>
+      </ul>
+      <p>
+        Ngoài các trường hợp trên, ứng dụng không chuyển dữ liệu tới máy chủ của nhà phát triển và không nhúng
+        SDK quảng cáo, SDK mạng xã hội hay SDK phân tích hành vi của bên thứ ba.
+      </p>
+    </section>
+
+    <section id="luu-tru-xoa">
+      <h2><span class="num">7</span> Lưu trữ, sao lưu và xoá dữ liệu</h2>
+      <h3>7.1 Thời gian lưu trữ</h3>
+      <p>
+        Ứng dụng không đặt thời hạn tự xoá. Dữ liệu được lưu trong vùng lưu trữ riêng của ứng dụng cho tới khi
+        bạn xoá trong ứng dụng, xoá dữ liệu ứng dụng, hoặc gỡ ứng dụng — trừ bản sao lưu do hệ điều hành tạo
+        (mục 7.3). Chúng tôi không giữ bản sao nào trên máy chủ.
+      </p>
+      <h3>7.2 Xoá dữ liệu trong ứng dụng</h3>
+      <ul>
+        <li>Xoá một tài liệu trong thư viện: mục trong thư viện và bản nháp liên quan bị xoá; tệp đã sao chép có thể vẫn nằm trong vùng lưu trữ của ứng dụng cho tới khi bạn xoá dữ liệu ứng dụng.</li>
+        <li>Xoá chữ ký đã lưu hoặc xoá từng bản nháp trong trình soạn thảo.</li>
+        <li>Xoá toàn bộ dữ liệu cục bộ: mở <em>Cài đặt Android → Ứng dụng → PDF All-in-One → Bộ nhớ → Xoá dữ liệu</em>. Thao tác này do hệ điều hành thực hiện và xoá vùng lưu trữ của ứng dụng.</li>
+      </ul>
+      <h3>7.3 Sao lưu của hệ điều hành</h3>
+      <p>
+        Android có thể tự động sao lưu dữ liệu ứng dụng lên tài khoản Google của bạn (Auto Backup), tuỳ cài đặt
+        thiết bị. Bản sao lưu này do Google quản lý và nằm ngoài tầm kiểm soát của nhà phát triển; bạn có thể
+        tắt trong <em>Cài đặt → Google → Sao lưu</em>. Nếu bạn không muốn dữ liệu ứng dụng được sao lưu,
+        hãy tắt tính năng này trước khi dùng.
+      </p>
+      <h3>7.4 Tệp trên Google Drive/OneDrive</h3>
+      <p>
+        Tệp bạn đã lưu lên tài khoản đám mây không bị xoá khi bạn gỡ ứng dụng. Bạn cần xoá chúng trực tiếp
+        trong Drive hoặc OneDrive.
+      </p>
+      <p class="note">
+        <strong>Yêu cầu xoá dữ liệu:</strong> vì ứng dụng không lưu dữ liệu trên máy chủ, không có dữ liệu nào
+        để xoá phía nhà phát triển. Nếu bạn đã từng gửi email hỗ trợ và muốn xoá nội dung trao đổi, hãy gửi yêu cầu
+        tới <a href="mailto:dlong.work06@gmail.com">dlong.work06@gmail.com</a> — chúng tôi sẽ xử lý trong thời hạn
+        pháp luật quy định.
+      </p>
+    </section>
+
+    <section id="bao-mat">
+      <h2><span class="num">8</span> Bảo mật</h2>
+      <p>
+        Ứng dụng dựa trên cơ chế bảo vệ của hệ điều hành: mỗi ứng dụng Android chạy trong một vùng lưu trữ riêng
+        (sandbox), các ứng dụng khác không đọc được dữ liệu này nếu thiết bị không bị root.
+        Kết nối tới Google/Microsoft dùng HTTPS.
+      </p>
+      <ul>
+        <li>PDF có mật khẩu: mật khẩu bạn nhập chỉ dùng để mở tệp trong phiên làm việc và không được lưu vào cơ sở dữ liệu của ứng dụng.</li>
+        <li>Mã truy cập đám mây được lưu trong kho bảo mật của hệ điều hành; chúng tôi không chủ động ghi mã truy cập vào nhật ký (log) của ứng dụng.</li>
+        <li>Chúng tôi không thể bảo vệ dữ liệu nếu thiết bị bị nhiễm phần mềm độc hại, bị root hoặc bạn chia sẻ tệp cho người khác.</li>
+      </ul>
+      <p>
+        Không có hệ thống nào an toàn tuyệt đối. Nếu bạn phát hiện vấn đề bảo mật, vui lòng báo cho chúng tôi
+        theo địa chỉ email ở mục 12.
+      </p>
+    </section>
+
+    <section id="tre-em">
+      <h2><span class="num">9</span> Trẻ em</h2>
+      <p>
+        Ứng dụng không hướng tới trẻ em dưới 13 tuổi và không cố ý thu thập dữ liệu của trẻ em.
+        Vì ứng dụng không có tài khoản và không lưu dữ liệu người dùng trên máy chủ, chúng tôi không có
+        dữ liệu cá nhân nào của người dùng, kể cả trẻ em. Email bạn tự gửi tới hộp thư hỗ trợ được xử lý
+        như mô tả ở mục 7. Nếu bạn là phụ huynh và cho rằng con bạn đã gửi thông tin cho chúng tôi qua email,
+        hãy liên hệ để chúng tôi xoá.
+      </p>
+    </section>
+
+    <section id="quyen-cua-ban">
+      <h2><span class="num">10</span> Quyền của bạn</h2>
+      <p>Theo Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, bạn có các quyền sau với dữ liệu cá nhân của mình:</p>
+      <ul>
+        <li><strong>Quyền được biết và đồng ý</strong> — biết mục đích xử lý và đồng ý trước khi dữ liệu được xử lý.</li>
+        <li><strong>Quyền truy cập và chỉnh sửa</strong> dữ liệu — với ứng dụng này, dữ liệu nằm trên thiết bị của bạn nên bạn kiểm soát trực tiếp.</li>
+        <li><strong>Quyền xoá dữ liệu</strong> — xoá trong ứng dụng hoặc xoá dữ liệu ứng dụng trong phần Cài đặt Android.</li>
+        <li><strong>Quyền hạn chế và phản đối xử lý</strong> — bạn có thể ngừng dùng tính năng hoặc thu hồi quyền truy cập bất cứ lúc nào.</li>
+        <li><strong>Quyền rút lại sự đồng ý</strong> — thu hồi quyền camera, ảnh hoặc đăng xuất khỏi Drive/OneDrive.</li>
+        <li><strong>Quyền khiếu nại, tố cáo và khởi kiện</strong> — gửi phản ánh tới email hỗ trợ, hoặc tới cơ quan chuyên trách bảo vệ dữ liệu cá nhân.</li>
+      </ul>
+      <p>
+        Đây là các quyền chính; danh sách đầy đủ và trình tự thực hiện theo Luật 91/2025/QH15 và
+        Nghị định 356/2025/NĐ-CP.
+      </p>
+    </section>
+
+    <section id="thay-doi">
+      <h2><span class="num">11</span> Thay đổi chính sách</h2>
+      <p>
+        Chính sách có thể được cập nhật khi ứng dụng thay đổi tính năng hoặc khi quy định pháp luật thay đổi.
+        Ngày cập nhật luôn hiển thị ở đầu trang. Thay đổi quan trọng sẽ được thông báo trong mô tả bản cập nhật
+        trên Google Play.
+      </p>
+    </section>
+
+    <section id="lien-he">
+      <h2><span class="num">12</span> Liên hệ</h2>
+      <p>Mọi câu hỏi, yêu cầu hoặc khiếu nại về quyền riêng tư, vui lòng liên hệ:</p>
+      <div class="contact-card">
+        <p><strong>Nguyễn Đức Long</strong><br>Nhà phát triển ứng dụng PDF All-in-One: Ký &amp; Chỉnh Sửa</p>
+        <p>Email: <a href="mailto:dlong.work06@gmail.com">dlong.work06@gmail.com</a></p>
+        <p>Thời gian phản hồi: trong thời hạn pháp luật quy định.</p>
+      </div>
+    </section>
+
+  </article>
+
+  <aside class="toc-desktop" aria-label="Mục lục">
+    <p class="toc-title">Nội dung</p>
+    <ol>
+      <li><a href="#tom-tat">Tóm tắt nhanh</a></li>
+      <li><a href="#don-vi">1. Đơn vị chịu trách nhiệm</a></li>
+      <li><a href="#xu-ly-tren-thiet-bi">2. Dữ liệu trên thiết bị</a></li>
+      <li><a href="#khong-thu-thap">3. Dữ liệu không thu thập</a></li>
+      <li><a href="#quyen-android">4. Quyền trên Android</a></li>
+      <li><a href="#google-drive-onedrive">5. Google Drive &amp; OneDrive</a></li>
+      <li><a href="#chia-se-ben-thu-ba">6. Khi dữ liệu rời thiết bị</a></li>
+      <li><a href="#luu-tru-xoa">7. Lưu trữ &amp; xoá</a></li>
+      <li><a href="#bao-mat">8. Bảo mật</a></li>
+      <li><a href="#tre-em">9. Trẻ em</a></li>
+      <li><a href="#quyen-cua-ban">10. Quyền của bạn</a></li>
+      <li><a href="#thay-doi">11. Thay đổi chính sách</a></li>
+      <li><a href="#lien-he">12. Liên hệ</a></li>
+    </ol>
+  </aside>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p>© 2026 PDF All-in-One: Ký &amp; Chỉnh Sửa</p>
+    <p>Cập nhật lần cuối: 02/11/2026 · <a href="#noi-dung">Về đầu trang</a></p>
+  </div>
+</footer>
+</body>
+</html>
